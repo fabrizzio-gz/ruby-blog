@@ -1,0 +1,22 @@
+<% hide_link ||= false %>
+
+<div>
+  <h2>
+    <%= post.title %>
+  </h2>
+
+  <p>
+    <%= post.body %>
+  </p>
+
+  <% unless hide_link %>
+    <%= link_to post do %>
+      Link
+    <% end%>
+  <% else %>
+    <%= link_to posts_path do %>
+      Go back
+    <% end%>
+  <% end %>
+
+</div>
