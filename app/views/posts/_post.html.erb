@@ -9,6 +9,10 @@
     <%= post.body %>
   </p>
 
+  <p>
+    Author: <%= post.user.email%>
+  </p>
+
   <% unless hide_link %>
     <%= link_to post do %>
       Link

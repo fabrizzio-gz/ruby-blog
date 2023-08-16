@@ -2,7 +2,7 @@
 
 <h1>Log in</h1>
 
-<%= form_with model: @user, url: logins_path do |form| %>
+<%= form_with model: @user, url: create_post_path do |form| %>
   <div>
     <%= form.label :email, "Email:" %>
     <%= form.email_field :email %>

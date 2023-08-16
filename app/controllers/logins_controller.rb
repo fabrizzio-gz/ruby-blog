@@ -1,5 +1,6 @@
 class LoginsController < ApplicationController
   def new
+    redirect_if_logged_in
     @user = User.new
   end
 
@@ -15,12 +16,21 @@ class LoginsController < ApplicationController
 
   private
 
+  def redirect_if_logged_in
+    id = session[:user_id]
+    user = User.find_by(id: id)
+    if user
+      redirect_to posts_path
+    end
+  end
+
   def login_params
     params.require(:user).permit(:email, :password)
   end
 
   def save_session
     session[:user_id] = @user.id
+    session[:user_email] = @user.email
   end
 
   def flash_login_failed

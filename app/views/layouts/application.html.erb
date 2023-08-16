@@ -12,5 +12,11 @@
 
   <body>
     <%= yield %>
+    <br />
+    <% if session[:user_id] %>
+      <%= "Logged in as: #{session[:user_email]}" %>
+    <% elsif request.path != new_login_path %>
+      <%= link_to "Log in", new_login_path %>
+    <% end %>
   </body>
 </html>
