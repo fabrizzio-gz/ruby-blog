@@ -1,5 +1,5 @@
+<%= alert %>
 <h1>Create post</h1>
-<%= form_with %>
 <%= form_with model: @post, url: posts_path do |form| %>
   <div>
     <%= form.label :title, "Title:" %>
@@ -8,10 +8,8 @@
 
   <div>
     <%= form.label :body, "Content:" %>
-    <%= form.text_area :body %>
+    <%= form.text_field :body %>
   </div>
-
-  <% form.hidden_field :user_id, value: session[:user_id] %>
 
   <%= form.submit "Post" %>
 <% end %>

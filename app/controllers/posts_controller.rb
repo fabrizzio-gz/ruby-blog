@@ -8,11 +8,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(new_post_params)
-    if @post
+    @post = Post.new(new_post_params)
+
+    if @post.save
       flash_post_created
       return redirect_to posts_path
     end
+    flash[:alert] = "Couldn't create the post!"
+    render :new, status: :unprocessable_entity
   end
 
   def show
@@ -25,7 +28,9 @@ class PostsController < ApplicationController
   private
 
   def new_post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    var = params.require(:post).permit(:title, :body, :user_id)
+    var[:user_id] = session[:user_id]
+    return var
   end
 
   def flash_post_created
