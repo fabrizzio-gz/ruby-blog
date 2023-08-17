@@ -20,15 +20,30 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @is_post_author = @post.user_id == session[:user_id]
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    post = Post.where(user_id: session[:user_id]).find(params[:id])
+
+    if post
+      post.update(new_post_params)
+      flash[:alert] = "Post updated!"
+    else
+      flash[:alert] = "Couldn't update post!"
+    end
+
+    redirect_to post_path(post)
   end
 
   private
 
   def new_post_params
-    var = params.require(:post).permit(:title, :body, :user_id)
+    var = params.require(:post).permit(:title, :body)
     var[:user_id] = session[:user_id]
     return var
   end

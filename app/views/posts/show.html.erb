@@ -1,2 +1,9 @@
+<%= alert %>
 <h1>Post #<%= @post.id %></h1>
-<%= render @post, {hide_link: true }  %>
+<%= render @post, {hide_link: true } %>
+
+<br />
+
+<% if @is_post_author %>
+  <%= link_to "Edit", edit_post_path(@post) %>
+<% end %>
