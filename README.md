@@ -1,24 +1,25 @@
-# README
+# How to run
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Set up DB and dummy data:
 
-Things you may want to cover:
+```bash
+$ rails db:migrate
+$ rails db:seed
+```
 
-* Ruby version
+It will create 2 users:
 
-* System dependencies
+1. email: `admin@blog.com`, password: `admin`
+2. email: `user_1@blog.com`, password: `123456`
 
-* Configuration
+Run server:
 
-* Database creation
+```bash
+$ rails s
+```
 
-* Database initialization
+Finally, navigate to: http://127.0.0.1:3000 in your browser.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Notes:**
+- Register a new user support was not added.
+- There is no support to log out. Delete cookies manually.
